@@ -1,0 +1,14 @@
+{
+    "nombreApp" : "Practica",
+    "rutas" : [
+        {
+            "ruta" : "login"   
+        },
+        {
+            "ruta" : "welcome"   
+        },
+        {
+            "ruta" : "eFood"   
+        }
+    ]
+}
