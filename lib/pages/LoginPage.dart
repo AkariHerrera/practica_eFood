@@ -163,7 +163,7 @@ class _LoginState extends State<LoginPage> {
             'Login',
             style: TextStyle(fontSize: 20.0),
           ),
-          onPressed: () => Navigator.pushNamed(context, 'eFood'),
+          onPressed: () => Navigator.pushNamed(context, 'perfil'),
         ),
       ),
     );

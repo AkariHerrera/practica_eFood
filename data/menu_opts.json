@@ -1,14 +1,41 @@
 {
     "nombreApp" : "Practica",
     "rutas" : [
+        
         {
-            "ruta" : "login"   
+            "ruta" : "eFood",
+            "icon" : "home",
+            "texto": "Home"
         },
         {
-            "ruta" : "welcome"   
+            "ruta" : "myperfil",
+            "icon" : "perfil",
+            "texto": "Profile"
         },
         {
-            "ruta" : "eFood"   
+            "ruta" : "welcome",
+            "icon" : "message",
+            "texto": "Message"
+        },
+        {
+            "ruta" : "coupon",
+            "icon" : "coupon",
+            "texto": "Coupon"
+        },
+        {
+            "ruta" : "welcome",
+            "icon" : "order",
+            "texto": "My order"
+        },
+        {
+            "ruta" : "welcome",
+            "icon" : "payment",
+            "texto": "Payment Method"
+        },
+        {
+            "ruta" : "welcome",
+            "icon" : "languaje",
+            "texto": "Languaje"
         }
     ]
 }
