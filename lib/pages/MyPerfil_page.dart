@@ -31,7 +31,8 @@ class _MyPerfilState extends State<MyPerfil> {
           onPressed: () => Navigator.pushNamed(context, 'perfil'),
         ),
       ),
-      body: Column(
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         children: [
           SizedBox(
             height: 35.0,
@@ -40,7 +41,11 @@ class _MyPerfilState extends State<MyPerfil> {
           SizedBox(
             height: 35.0,
           ),
-          _inputs(),
+          _crearNombre(),
+          SizedBox(height: 15.0),
+          _crearApellido(),
+          SizedBox(height: 15.0),
+          _crearNum(),
           SizedBox(
             height: 20.0,
           ),
@@ -88,6 +93,7 @@ class _MyPerfilState extends State<MyPerfil> {
       children: [
         _imagen(
             'https://e7.pngegg.com/pngimages/694/639/png-clipart-computer-icons-user-profile-female-symbol-miscellaneous-purple.png'),
+        SizedBox(height: 5.0),
         Text(
           '$_nombre $_apellido ',
           style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0),
@@ -104,12 +110,10 @@ class _MyPerfilState extends State<MyPerfil> {
         decoration: InputDecoration(
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
-            helperText: 'First Name',
-            labelText: 'First Name'),
-
+            labelText: 'First Name',
+            hintText: 'Akari Lucero'),
+//textInputAction: TextInputAction.don,
         onChanged: (valor) {
-          //print(_nombre);
-
           setState(() {
             _nombre = valor;
           });
@@ -126,10 +130,9 @@ class _MyPerfilState extends State<MyPerfil> {
         decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
           labelText: 'Last Name',
-          helperText: 'Last Name',
+          hintText: 'Herrera Aguilar',
         ),
         onChanged: (valor) {
-          //print(_nombre);
           setState(() {
             _apellido = valor;
           });
@@ -159,18 +162,16 @@ class _MyPerfilState extends State<MyPerfil> {
   }
 
   Widget _inputs() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _crearNombre(),
-          SizedBox(height: 15.0),
-          _crearApellido(),
-          SizedBox(height: 15.0),
-          _crearNum()
-        ],
-      ),
+    return Expanded(
+      child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          children: <Widget>[
+            _crearNombre(),
+            SizedBox(height: 15.0),
+            _crearApellido(),
+            SizedBox(height: 15.0),
+            _crearNum()
+          ]),
     );
   }
 

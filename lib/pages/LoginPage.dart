@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginState extends State<LoginPage> {
   String _numero = '';
   bool _bloquearCheck = false;
-  String _password = "";
+  String password = '';
 
   TextEditingController _inputFieldDateController = new TextEditingController();
 
@@ -44,7 +44,6 @@ class _LoginState extends State<LoginPage> {
           decoration: InputDecoration(
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
-            counter: Text('Letras ${_numero.length}'),
             hintText: 'Mobile Number',
             labelText: 'Mobile Number',
             helperText: 'Mobile Number',
@@ -74,13 +73,11 @@ class _LoginState extends State<LoginPage> {
                 hintText: 'Password',
                 labelText: 'Password',
               ),
-              onChanged: (_bloquearCheck)
-                  ? null
-                  : (valor) {
-                      setState(() {
-                        _password = valor;
-                      });
-                    },
+              onChanged: (valor) {
+                setState(() {
+                  password = valor;
+                });
+              },
             ),
           ),
         ],
@@ -118,8 +115,11 @@ class _LoginState extends State<LoginPage> {
     return Column(
       children: [
         CheckboxListTile(
-          title: Text('Remember me'),
+          title: Text(
+            'Remember me',
+          ),
           value: _bloquearCheck,
+          activeColor: Colors.red,
           onChanged: (valor) {
             setState(() {
               _bloquearCheck = valor!;
@@ -134,12 +134,13 @@ class _LoginState extends State<LoginPage> {
     return Column(
       children: [
         Container(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Colors.white, onPrimary: Colors.black, elevation: 0),
+          child: TextButton(
             child: Text(
               'Forget Password?',
-              style: TextStyle(fontSize: 15.0),
+              style: TextStyle(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
             onPressed: () {},
           ),
@@ -150,21 +151,23 @@ class _LoginState extends State<LoginPage> {
 
   Widget _Boton(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 255, 255, 255),
       child: Center(
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.red,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
-            padding: EdgeInsets.symmetric(horizontal: 150.0, vertical: 15.0),
-          ),
-          child: Text(
-            'Login',
-            style: TextStyle(fontSize: 20.0),
-          ),
-          onPressed: () => Navigator.pushNamed(context, 'perfil'),
-        ),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.red,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              padding: EdgeInsets.symmetric(horizontal: 150.0, vertical: 15.0),
+            ),
+            child: Text(
+              'Login',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            onPressed: () {
+              if (_numero == "9831232233" && password == "Aki15") {
+                Navigator.pushNamed(context, 'perfil');
+              }
+            }),
       ),
     );
   }
@@ -176,16 +179,13 @@ class _LoginState extends State<LoginPage> {
         children: [
           Text("Create in account?",
               style: TextStyle(fontSize: 10.0, color: Colors.grey)),
-          Container(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.white, onPrimary: Colors.black, elevation: 0),
-              child: Text(
-                'singup',
-                style: TextStyle(fontSize: 10.0),
-              ),
-              onPressed: () => Navigator.pushNamed(context, 'singup'),
-            ),
+          TextButton(
+            child: Text('singup',
+                style: TextStyle(
+                    fontSize: 10.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold)),
+            onPressed: () {},
           ),
         ],
       ),

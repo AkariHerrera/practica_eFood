@@ -5,7 +5,13 @@ import 'package:practica/pages/WelcomePage.dart';
 import 'package:practica/pages/couponPage.dart';
 import 'package:practica/pages/eFood.dart';
 import 'package:practica/pages/homepage.dart';
+import 'package:practica/pages/listaha.dart';
+import 'package:practica/pages/listapas.dart';
+import 'package:practica/pages/listapi.dart';
+import 'package:practica/pages/listasop.dart';
 import 'package:practica/pages/perfil.dart';
+
+import '../pages/coupondosPage.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
@@ -16,5 +22,10 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     'perfil': (BuildContext context) => PerfilPage(),
     'myperfil': (BuildContext context) => MyPerfil(),
     'coupon': (BuildContext context) => CouponPage(),
+    'listha': (BuildContext context) => ListahaPage(),
+    'listpi': (BuildContext context) => ListpiPage(),
+    'listpas': (BuildContext context) => ListpasPage(),
+    'listso': (BuildContext context) => listasoPage(),
+    'coupondos': (BuildContext context) => CoupondosPage(),
   };
 }

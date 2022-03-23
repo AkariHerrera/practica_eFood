@@ -15,15 +15,15 @@ class HomePage extends StatelessWidget {
         body: Padding(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: Center(
-        child: Column(
+        child: ListView(
           children: <Widget>[
-            SizedBox(height: 30.0),
+            // SizedBox(height: 10.0),
             _Skip(context),
-            SizedBox(height: 30.0),
+            //  SizedBox(height:10.0),
             _CrearImagen(),
-            SizedBox(height: 30.0),
+            // SizedBox(height: 15.0),
             _CrearTexto(),
-            SizedBox(height: 50.0),
+            SizedBox(height: 20.0),
             _Boton(context)
           ],
         ),
@@ -87,12 +87,11 @@ class HomePage extends StatelessWidget {
   Widget _Skip(BuildContext context) {
     return Container(
       alignment: Alignment.centerRight,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            primary: Colors.white, onPrimary: Colors.black, elevation: 0),
+      child: TextButton(
         child: Text(
           'Skip',
-          style: TextStyle(fontSize: 10.0),
+          style: TextStyle(
+              fontSize: 10.0, color: Colors.black, fontWeight: FontWeight.bold),
         ),
         onPressed: () => Navigator.pushNamed(context, 'eFood'),
       ),

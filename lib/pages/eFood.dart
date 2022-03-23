@@ -26,126 +26,164 @@ class eFoodPage extends StatelessWidget {
           Icons.abc,
         ),
       ),
-      body: SingleChildScrollView(
-          child: Column(
-        children: [
-          _categories(),
-          _menu(),
-          _list(),
-        ],
-      )),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            _search(),
+            _categories(context),
+            _menu(),
+            Divider(),
+            _Banner(),
+            _list(),
+          ],
+        )),
+      ),
       bottomNavigationBar: _bottomNavigationBar(context),
     );
   }
 
-  Widget _categories() {
+  Widget _search() {
+    return TextField(
+      //autofocus: true,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+        suffixIcon: Icon(
+          Icons.search,
+          color: Colors.grey,
+        ),
+        hintText: "Search items home...",
+      ),
+      onChanged: (valor) {},
+    );
+  }
+
+  Widget _categories(BuildContext context) {
     return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'All Categories',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(height: 5.0),
+            Container(
+              height: 100.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  _accion(
+                      context,
+                      'https://thumbs.dreamstime.com/b/hamburguesas-del-vegano-con-las-empanadas-y-los-brotes-verdes-cosecha-cuadrada-de-remolachas-134457335.jpg',
+                      'Hamburguesas',
+                      'listha'),
+                  _accion(
+                      context,
+                      'https://media-cdn.tripadvisor.com/media/photo-s/0d/0c/20/33/pizza-express-belen.jpg',
+                      'Pizzas',
+                      'listpi'),
+                  _accion(
+                      context,
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSBjoxUc4G_hpTEkn3fNOnDJITGl8UFmkc_A&usqp=CAU',
+                      'Pastas',
+                      'listpas'),
+                  _accion(
+                      context,
+                      'https://bakeitwithlove.com/wp-content/uploads/2016/05/Crab-Egg-Drop-Soup-lg-sq.jpg',
+                      'Sopas',
+                      'listso'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _accion(
+      BuildContext context, String image, String texto, String ruta) {
+    final accion = Container(
+      height: 70.0,
+      width: 70.0,
+      child: Image(
+        image: NetworkImage('$image'),
+        width: 70.0,
+        height: 70.0,
+        fit: BoxFit.cover,
+      ),
+    );
+
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(primary: Colors.white, elevation: 0),
+      onPressed: () {
+        Navigator.pushNamed(context, '$ruta');
+      },
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'All Categories',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
+          ClipRRect(
+            clipBehavior: Clip.antiAlias,
+            borderRadius: BorderRadius.circular(35),
+            child: (accion),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _accion(
-                  'https://thumbs.dreamstime.com/b/hamburguesas-del-vegano-con-las-empanadas-y-los-brotes-verdes-cosecha-cuadrada-de-remolachas-134457335.jpg',
-                  'Hamburguesas'),
-              _accion(
-                  'https://media-cdn.tripadvisor.com/media/photo-s/0d/0c/20/33/pizza-express-belen.jpg',
-                  'Pizzas'),
-              _accion(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSBjoxUc4G_hpTEkn3fNOnDJITGl8UFmkc_A&usqp=CAU',
-                  'Pastas'),
-              _accion(
-                  'https://bakeitwithlove.com/wp-content/uploads/2016/05/Crab-Egg-Drop-Soup-lg-sq.jpg',
-                  'Sopas'),
-            ],
-          ),
+          Text(texto, style: TextStyle(fontSize: 15.0, color: Colors.black)),
         ],
       ),
     );
   }
 
-  Widget _accion(String image, String texto) {
-    final accion = Container(
-        height: 70.0,
-        width: 70.0,
-        child: Image(
-          image: NetworkImage('$image'),
-          width: 70.0,
-          height: 70.0,
-          fit: BoxFit.cover,
-        ));
-
-    return Column(
-      children: [
-        Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-            ),
-            child: Column(
-              children: [
-                ClipRRect(
-                  clipBehavior: Clip.antiAlias,
-                  borderRadius: BorderRadius.circular(35),
-                  child: (accion),
-                ),
-              ],
-            )),
-        SizedBox(height: 5.0),
-        Text(texto, style: TextStyle(fontSize: 15.0, color: Colors.black)),
-      ],
-    );
-  }
-
   Widget _menu() {
     return Card(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Set Menu',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              bViewAll(),
-            ],
-          ),
-          Container(
-            height: 185.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                _optMenu(
-                    'https://static2.abc.es/media/familia/2018/05/23/Minevera_Pasta-k4KC--620x349@abc.jpg',
-                    'Spaguetti a la boloñesa',
-                    '60'),
-                _optMenu(
-                    'https://www.paulinacocina.net/wp-content/uploads/2020/08/tacos-meat-food-mexican-lunch-dinner-640x480.jpg',
-                    'Tacos',
-                    '50'),
-                _optMenu(
-                    'https://i0.wp.com/goula.lat/wp-content/uploads/2019/12/hamburguesa-beyond-meat-scaled-e1577396155298.jpg?fit=1600%2C1068&ssl=1',
-                    'Hamburguesa',
-                    '80'),
-                _optMenu(
-                    'https://img.buzzfeed.com/buzzfeed-static/static/2015-04/14/11/campaign_images/webdr13/23-comidas-que-puedes-preparar-aunque-estes-en-ba-2-13224-1429024538-7_dblbig.jpg?resize=1200:*',
-                    'Macarrones con queso',
-                    '70'),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Set Menu',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                bViewAll(),
               ],
             ),
-          ),
-        ],
+            Container(
+              height: 200.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  _optMenu(
+                      'https://static2.abc.es/media/familia/2018/05/23/Minevera_Pasta-k4KC--620x349@abc.jpg',
+                      'Spaguetti a la boloñesa',
+                      '60'),
+                  _optMenu(
+                      'https://www.paulinacocina.net/wp-content/uploads/2020/08/tacos-meat-food-mexican-lunch-dinner-640x480.jpg',
+                      'Tacos',
+                      '50'),
+                  _optMenu(
+                      'https://i0.wp.com/goula.lat/wp-content/uploads/2019/12/hamburguesa-beyond-meat-scaled-e1577396155298.jpg?fit=1600%2C1068&ssl=1',
+                      'Hamburguesa',
+                      '80'),
+                  _optMenu(
+                      'https://img.buzzfeed.com/buzzfeed-static/static/2015-04/14/11/campaign_images/webdr13/23-comidas-que-puedes-preparar-aunque-estes-en-ba-2-13224-1429024538-7_dblbig.jpg?resize=1200:*',
+                      'Macarrones con queso',
+                      '70'),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -166,70 +204,166 @@ class eFoodPage extends StatelessWidget {
 
   Widget _optMenu(String imagen, String nombrecomida, String precio) {
     return Container(
-      height: 170.0,
-      width: 165.0,
-      child: Card(
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
-          elevation: 5.0,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _imagenMenu('$imagen'),
-              Text('$nombrecomida'),
-              Text('Set Menu'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(
-                    Icons.star,
-                    size: 15.0,
-                    color: Colors.yellow,
+      height: 165.0,
+      width: 185.0,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Card(
+            margin: EdgeInsets.symmetric(horizontal: 5.0),
+            elevation: 5.0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _imagenMenu('$imagen'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Text('$nombrecomida'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Text('Set Menu'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.star,
+                        size: 15.0,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15.0,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15.0,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15.0,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15.0,
+                        color: Colors.yellow,
+                      ),
+                    ],
                   ),
-                  Icon(
-                    Icons.star,
-                    size: 15.0,
-                    color: Colors.yellow,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('\$$precio'),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () {},
+                      )
+                    ],
                   ),
-                  Icon(
-                    Icons.star,
-                    size: 15.0,
-                    color: Colors.yellow,
+                )
+              ],
+            )),
+      ),
+    );
+  }
+
+  Widget _Banner() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Banner',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(height: 8.0),
+            Container(
+              height: 100.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  _optbanner(
+                    'https://images.vexels.com/media/users/3/174637/raw/1be5034ca8fa356870993e5ac567ae37-diseno-de-banner-de-comida-italiana.jpg',
                   ),
-                  Icon(
-                    Icons.star,
-                    size: 15.0,
-                    color: Colors.yellow,
+                  _optbanner(
+                    'https://static.vecteezy.com/system/resources/thumbnails/003/123/897/small/food-banner-template-free-vector.jpg',
                   ),
-                  Icon(
-                    Icons.star,
-                    size: 15.0,
-                    color: Colors.yellow,
+                  _optbanner(
+                    'https://png.pngtree.com/template/20210825/ourlarge/pngtree-restaurant-opening-discount-promotion-green-banner-image_584335.jpg',
+                  ),
+                  _optbanner(
+                    'https://img.freepik.com/psd-gratis/plantilla-diseno-banner-comida-sana_23-2149197636.jpg?size=626&ext=jpg',
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('\$$precio'),
-                    IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
-              )
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  Widget _optbanner(String imagen) {
+    return Container(
+        height: 100.0,
+        width: 220.0,
+        child: Card(
+            margin: EdgeInsets.symmetric(horizontal: 5.0),
+            elevation: 5.0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[_imagenbanner('$imagen')])));
+  }
+
+  Widget _imagenbanner(String image) {
+    final accion = Container(
+        height: 100.0,
+        width: double.infinity,
+        child: Image(
+          image: NetworkImage('$image'),
+          fit: BoxFit.cover,
+        ));
+
+    return Column(children: [
+      Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: accion,
+              ),
+            ],
+          ))
+    ]);
   }
 
   Widget _imagenMenu(String image) {
     final accion = Container(
-        height: 80.0,
+        height: 90.0,
         width: double.infinity,
         child: Image(
           image: NetworkImage('$image'),
@@ -262,7 +396,7 @@ class eFoodPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Popular Menu',
+                'Popular Item',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               bViewAll(),

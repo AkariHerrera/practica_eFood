@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CouponPage extends StatelessWidget {
-  //const CouponPage({Key? key}) : super(key: key);
+class CoupondosPage extends StatelessWidget {
+  //const CoupondosPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,20 +45,6 @@ class CouponPage extends StatelessWidget {
                         'https://cdn-icons-png.flaticon.com/512/2527/2527649.png'),
                   ),
                 ),
-                Container(
-                  height: 250.0,
-                  child: Image(
-                    image: NetworkImage(
-                        'https://cdn-icons-png.flaticon.com/512/2527/2527649.png'),
-                  ),
-                ),
-                Container(
-                  height: 250.0,
-                  child: Image(
-                    image: NetworkImage(
-                        'https://cdn-icons-png.flaticon.com/512/2527/2527649.png'),
-                  ),
-                ),
               ],
             ),
           ),
@@ -81,7 +67,7 @@ class CouponPage extends StatelessWidget {
               'Available',
               style: TextStyle(
                   fontSize: 15.0,
-                  color: Colors.black,
+                  color: Colors.grey,
                   fontWeight: FontWeight.bold),
             ),
           ),
@@ -93,7 +79,7 @@ class CouponPage extends StatelessWidget {
               'Used',
               style: TextStyle(
                   fontSize: 15.0,
-                  color: Colors.grey,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
           ),

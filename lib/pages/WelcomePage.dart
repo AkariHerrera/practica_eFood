@@ -44,7 +44,7 @@ class WelcomePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           child: Text(
-            "Lorem ipsum jsndnd jdjjndjcjndjnc djnjfh djhfh jdnb hfud djc",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in gravida erat.",
             style: estiloSubtitulo,
             textAlign: TextAlign.center,
           ),
